@@ -5,19 +5,14 @@ import matplotlib.pyplot as plt
 
 
 nx = 1000
-x = np.linspace(-10, 10, nx)
+x = np.linspace(-1, 1, nx)
 dx = x[1] - x[0]
 
 
 d2_dx2 = FinDiff(0, dx, 2, acc=2)
-# V = 0.5 * x**2
-# V = -1 / np.abs(x)
 
 V = np.full(x.shape, 1000.0)
 V[50 : 950] = 0.0
-V[450 : 750] = 0.2
-
-# V = np.full(x.shape, 0.0)
 
 _V = V[:]
 V = scipy.sparse.diags(V)
@@ -25,20 +20,23 @@ H = - 0.5 * d2_dx2.matrix(x.shape) + V
 spectrum, states = scipy.sparse.linalg.eigs(H, which='SR', k=5)
 
 mag = lambda x: (x * np.conj(x)).real
+normalize = lambda x: x / np.linalg.norm(x)
 
 plt.subplot(211)
-for energy, state in list(zip(spectrum, np.transpose(states)))[3:]:
-    plt.plot(x, mag(state), '.-', label=f'E={energy.real:.3f}')
+plt.plot(x, _V, color="black", linewidth=2)
+plt.ylim(-0.1 , 1)
+plt.ylabel('U(x)')
 
-plt.ylabel('Ψ^2')
 plt.grid()
-plt.legend(loc='best')
+
 
 plt.subplot(212)
-plt.plot(x, _V)
-plt.ylim(0,0.5)
-plt.ylabel('U')
+for n, (energy, state) in enumerate(list(zip(spectrum, np.transpose(states)))[:3]):
+    plt.plot(x, normalize(mag(state)), '-', label=f'n={n} E={energy.real:.1f}')
+
+plt.ylabel('$\Psi^2(x)$')
 plt.xlabel('x')
 plt.grid()
+plt.legend(loc='best')
 
 plt.show()
