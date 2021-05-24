@@ -61,6 +61,8 @@ def update(t):
     global psi
     psi = spsolve(bck, fwd.dot(psi))
     line_psi.set_ydata(mag(psi))
+
+    
     # line_psi.set_ydata(np.real(psi))
     # line_psi2.set_ydata(np.imag(psi))
 
