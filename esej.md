@@ -1,4 +1,4 @@
-# Numeryczne rozwiązywanie równania Shrödingera
+# Numeryczne rozwiązywanie równania Schrödingera
 Krzysztof Nowak
 24.05.2021r
 
@@ -6,11 +6,11 @@ Krzysztof Nowak
 
 Chyba każdy, kto choć trochę interesuje się fizyką słyszał o pewnym jednocześnie żywym i martwym kocie; lub o elektronach, których pozycja i pęd pozostają nieokreślone. Nic w tym dziwnego, zagadki mechaniki kwantowej inspirują wyobraźnie i zaprzątją umysły. Zawsze jednak byłem zawiedziony faktem, że opis mikroświata ukryty jest za nieprzystępnymi symbolami matematycznymi, a zwykłemu uczniowi pozostają jednie jakościowe charakteryzacje obserwowanych zjawisk. Postanowiłem to zmienić i w sposób dosyć nieudolny, bo z pomocą komputera, a nie ścisłego formalizmu matematycznego, "pobawić się" elektronem w mikroskali.
 
-## Równanie Shrödingera
+## Równanie Schrödingera
 $$i\hbar \cfrac{\partial\psi}{\partial t} 
 = \left[-\cfrac{\hbar^2}{2m}\cfrac{\partial^2}{\partial x^2} + V(x,t)\right] \psi$$
 
-Równanie Shrödingera jest podstawowym elementem mechaniki kwantowej. Opisuje funkcję falową oraz jej zmiany w czasie. Czym jest funkcja falowa $\psi(x,t)$? Nie da się jej zinterpretować wprost, jednak zawieraja wszystkie informacje o położeniu i pędzie analizowanej cząstki, które możemy wyłuskać przy użyciu odpowiednich operacji. Na przykład $|\psi(x,t)|^2$ (kwadrat modułu w sensie liczb zespolonych) opisuje gęstość prawdopodobieństwa, czyli szanse, że cząstka znajduje się w danej objętości przestrzeni. 
+Równanie Schrödingera jest podstawowym elementem mechaniki kwantowej. Opisuje funkcję falową oraz jej zmiany w czasie. Czym jest funkcja falowa $\psi(x,t)$? Nie da się jej zinterpretować wprost, jednak zawieraja wszystkie informacje o położeniu i pędzie analizowanej cząstki, które możemy wyłuskać przy użyciu odpowiednich operacji. Na przykład $|\psi(x,t)|^2$ (kwadrat modułu w sensie liczb zespolonych) opisuje gęstość prawdopodobieństwa, czyli szanse, że cząstka znajduje się w danej objętości przestrzeni. 
 Drugim bardzo istotnym elementem jest funkcja $V(x,t)$ opisująca zadany potencjał, w którym porusza się cząsteczka. Potencjał najczęściej jest wynikiem oddziaływania elektrycznego (jak np. elektron w atomie wodoru), jednak może być zadany dowolną inną funkcją. Możemy dostrzec również symbole pochodnych cząstkowych $\cfrac{\partial\psi}{\partial t}$, $\cfrac{\partial^2}{\partial x^2}$ wskazujących, że mamy do czynienia z równaniem różniczkowym. Pozostałe symbole to stałe: $\hbar$ — zredukowana stała Plancka, oznacza kwant momentu pędu; $m$ — masa cząstki oraz $i$ — jednostka urojona, w sensie liczb zespolonych.
 
 ## Jak to rozwiązać?
@@ -61,7 +61,7 @@ a w drugim $\sigma_x = 0.2$.
 
 W obu przypadkach wraz z upływem czasu niepewność położenia wzrasta. Jest to spowodowane tym, że zgodnie z zasadą nieoznaczoności pęd (więc również prędkość) nie może być dokładnie znana.
 $$ \sigma_p \geq \cfrac{\hbar}{2\sigma_x} $$
-Im dokładniej znamy położenie $\sigma_x$ tym większą niepewność $\sigma_p$. Co za tym idzie wierzchołek na górnym wykresie ulega znacznie szybszemu spłaszczeniu, bo zawiera dokładniejszą informację o pozycji. Pod koniec symulacji oba wykresy niemalże zrównuje się, ponieważ zawierały taką samą, maksymalną ilość informacji. Warto podkreślić, że takie zachowanie nie jest spowodowane jakąkolwiek niedoskonałością fizycznych pomiarów, bądź symulacji, lecz jest elementem działania wszechświata, który został zakodowany w równaniu Shrödingera.
+Im dokładniej znamy położenie $\sigma_x$ tym większą niepewność $\sigma_p$. Co za tym idzie wierzchołek na górnym wykresie ulega znacznie szybszemu spłaszczeniu, bo zawiera dokładniejszą informację o pozycji. Pod koniec symulacji oba wykresy niemalże zrównuje się, ponieważ zawierały taką samą, maksymalną ilość informacji. Warto podkreślić, że takie zachowanie nie jest spowodowane jakąkolwiek niedoskonałością fizycznych pomiarów, bądź symulacji, lecz jest elementem działania wszechświata, który został zakodowany w równaniu Schrödingera.
 
 ## Studnia potencjału zależna od czasu
 Możemy również zasymulować zachowanie w czasie wspomnianej wcześniej [studni potencjału](#studnia-potencjału). Jako stan początkowy przyjmiemy wcześniej wyliczony stan o $n=2$. $\psi(t=0) =\psi_{n=2}$. 
