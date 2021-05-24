@@ -2,17 +2,15 @@
 Krzysztof Nowak
 24.05.2021r
 
-
-
 ## Wstęp
 
-Chyba każdy, kto choć trochę interesuje się fizyką słyszał o pewnym żywo-martwym kocie i o uwięzionych elektronach, które są, lecz nie wiadomo gdzie. Nic w tym dziwnego, cuda mechaniki kwantowej bardzo łatwo porywają wyobraźnie. Zawsze jednak mierził mnie fakt, że opis mikroświata ukryty jest za nieprzystępnymi symbolami matematycznymi, a zwykłemu człowiekowi pozostają jednie jakościowe charakteryzacje zjawisk. Postanowiłem to zmienić, i w sposób dosyć nieudolny, bo z pomocą komputera, a nie ścisłego formalizmu matematycznego, "pobawić się" elektronem.
+Chyba każdy, kto choć trochę interesuje się fizyką słyszał o pewnym jednocześnie żywym i martwym kocie; lub o elektronach, którym nie można równocześnie zmierzyć pozycji i pędu. Nic w tym dziwnego, cuda mechaniki kwantowej bardzo łatwo porywają wyobraźnie. Zawsze jednak mierził mnie fakt, że opis mikroświata ukryty jest za nieprzystępnymi symbolami matematycznymi, a zwykłemu człowiekowi pozostają jednie jakościowe charakteryzacje obserwowanych zjawisk. Postanowiłem to zmienić i w sposób dosyć nieudolny, bo z pomocą komputera, a nie ścisłego formalizmu matematycznego, "pobawić się" elektronem w mikroskali.
 
 ## Równanie Shrödingera
 $$i\hbar \cfrac{\partial\psi}{\partial t} 
 = \left[-\cfrac{\hbar^2}{2m}\cfrac{\partial^2}{\partial x^2} + V(x,t)\right] \psi$$
 
-Równanie Shrödingera jest podstawowym elementem mechaniki kwantowej. Opisuje funkcję falową oraz jej zmiany w czasie. Czym jest funkcja falowa $\psi(x,t)$? Nie da się jej zinterpretować wprost, jednak jej zespolone wartości zawierają wszystkie informacje o położeniu i pędzie analizowanej cząstki, które możemy wyłuskać przy użyciu odpowiednich operacji. Na przykład $|\psi(x,t)|^2$ (kwadrat modułu w sensie liczb zespolonych) opisuje gęstość prawdopodobieństwa, czyli szanse, że cząstka znajduje się w danej objętości przestrzeni. Drugim bardzo istotnym elementem jest funkcja opisująca potencjał, w którym cząsteczka może się znaleźć. $V(x,t)$ opisuje jej energię potencjalną, w danym punkcie. Potencjał najczęściej jest wynikiem oddziaływania elektrycznego (jak w przypadku elektronu), jednak może być dowolnie zadany. 
+Równanie Shrödingera jest podstawowym elementem mechaniki kwantowej. Opisuje funkcję falową oraz jej zmiany w czasie. Czym jest funkcja falowa $\psi(x,t)$? Nie da się jej zinterpretować wprost, jednak {jej zespolone wartości} zawierają wszystkie informacje o położeniu i pędzie analizowanej cząstki, które możemy wyłuskać przy użyciu odpowiednich operacji. Na przykład $|\psi(x,t)|^2$ (kwadrat modułu w sensie liczb zespolonych) opisuje gęstość prawdopodobieństwa, czyli szanse, że cząstka znajduje się w danej objętości przestrzeni. Drugim bardzo istotnym elementem jest funkcja opisująca potencjał, w którym cząsteczka może się znaleźć. $V(x,t)$ opisuje jej energię potencjalną, w danym punkcie. Potencjał najczęściej jest wynikiem oddziaływania elektrycznego (jak w przypadku elektronu), jednak może być dowolnie zadany. 
 
 Pozostałe literki? $\hbar$ to stała Plancka kreślona V(x,t) to potencjał, opisuję jaką energię potencjalną miałaby cząstka, gdyby znalazła się w tym punkcie i czasie. 
 
@@ -52,11 +50,12 @@ Na szczęście wyznaczanie wartości własnych jest całkiem popularnym problem,
 
 ## Studnia potencjału
 Studnia potencjału to układ, w którym cząsteczka znajduje się w lokalnym minimum potencjału, otoczonym barierą nieskończonego potencjału. Elektron jest spułapkowany "na dnie studni" — jego energia kinetyczna jest niewystarczajacą do przekroczenia bariery. Okazuje się, że nie elektron umieszczony w takim układzie nie może mieć dowolnych prędkości i energii, tak jak miałoby to miejsce w przypadku klasycznej mechaniki. 
-![1](1_finite_well.png)
+![](1_finite_well.png)
 
 ## Upływ czasu
-A co gdybyśmy chcieli zobaczyć nasz elektron w ruchu? Możemy skorzystać z metody Cranka-Nicolson[^phys_utah]. Znając obecną wartość $\psi(t)$ możliwe jest wyliczenie przybliżonej wartości w momencie $t+\Delta t$.
-$$\left(1-\frac{H \Delta t}{2i\hbar}\right)\psi(t+\Delta t) = \left(1+\frac{H \Delta t}{2i\hbar}\right)\psi(t)$$ 
+A co gdybyśmy chcieli zobaczyć nasz elektron w ruchu? Możemy skorzystać z metody Cranka-Nicolson[^phys_utah]. Symulację zaczynamy znając pewną początkową wartość funkcji $\psi(t=0)$ i stały operator $\bar{H}$. Rozwiązując metodami algebry liniowej poniższe równanie, otrzymujemy stan układu po upływie pewnego małego czasu $\Delta t$. 
+$$\left(1-\frac{\hat{H} \Delta t}{2i\hbar}\right)\psi(t+\Delta t) = \left(1+\frac{\hat{H} \Delta t}{2i\hbar}\right)\psi(t)$$
+Krok ten możemy powtarzać dowolną liczbę razy, wyliczając stany układu w momentach: $0, \Delta t, 2\Delta t, 3\Delta t \dots$ Następnie serię pojedynczych stanów możemy złożyć w płynną animację.
 [^phys_utah]: http://www.physics.utah.edu/~detar/phycs6730/handouts/crank_nicholson/crank_nicholson/
 
 
@@ -64,13 +63,34 @@ $$\left(1-\frac{H \Delta t}{2i\hbar}\right)\psi(t+\Delta t) = \left(1+\frac{H \D
 ## Wolna cząsteczka i zasada nieoznaczoności
 Rozważmy elektron poruszający się z pewną prędkością w prawo, bez oddziaływań zewnętrznych. Zadamy go następującym pakietem:
 $$\psi(x, t=0) = e^{-\dfrac{1}{2}\left(\dfrac{x-x_0}{\sigma_x}\right)^2}e^{-ikx},$$ gdzie $x_0$ to położenie początkowe, $k$ liczba falowa, $\sigma_x$ niepewność położenia początkowego. W jednym przypadku weźmy $\sigma_x = 0.1$,
-![2](2_free_01.gif)
+![](2_free_01.gif)
 a w drugim $\sigma_x = 0.2$.
-![2](2_free_02.gif)
+![](2_free_02.gif)
 
 W obu przypadkach wraz z upływem czasu niepewność położenia wzrasta. Jest to spowodowane tym, że zgodnie z zasadą nieoznaczoności pęd (więc również prędkość) nie może być dokładnie znana.
 $$ \sigma_p \geq \cfrac{\hbar}{2\sigma_x} $$
 Im dokładniej znamy położenie $\sigma_x$ tym większą niepewność $\sigma_p$. Co za tym idzie wierzchołek na górnym wykresie ulega znacznie szybszemu spłaszczeniu, bo zawiera dokładniejszą informację o pozycji. Pod koniec symulacji oba wykresy niemalże zrównuje się, ponieważ zawierały taką samą, maksymalną ilość informacji. Warto podkreślić, że takie zachowanie nie jest spowodowane jakąkolwiek niedoskonałością fizycznych pomiarów, bądź symulacji, lecz jest elementem działania wszechświata, który został zakodowany w równaniu Shrödingera.
+
+## Studnia potencjału zależna od czasu
+Możemy również zasymulować zachowanie wspomnianej wcześniej [studni potencjału](#studnia-potencjału). Jako stan początkowy przyjmiemy wcześniej wyliczony stan o $n=2$. $\psi(t=0) =\psi_{n=2}$. 
+![](3_well_dynamic.gif)
+Zauważmy, że funkcja rzeczywiście oscyluje, jednocześnie zachowując stały rozkład prawdopodobieństwa, dlatego jest prawidłowym rozwiązaniem stacjonarnym.
+
+## Superpozycja
+Funkcja falowa może być kombinacją liniową rozwiązań stacjonarnych. Za stan początkowy przyjmijmy $\psi(t=0) = \cfrac{1}{\sqrt{2}}\left(\psi_{n=1} + \psi_{n=2}\right)$. Czynnik $\cfrac{1}{\sqrt{2}}$ ma na celu znormalizowanie funkcji, pominięcie tego kroku skutkowałoby pradopodobieństwami dodającymi się do liczby większej niż 1. 
+![](5_superposition.gif)
+
+## Zjawisko tunelowe
+
+Rozważmy elektron poruszający się z prędkością $v=60$. Jego energia wynosi wtedy $E=\cfrac{mv^2}{2} = 1800$. Ustalmy barierę potencjału o wartości $V=2000$. Jak zachowa się elektron? Według fizyki klasycznej, nie posiada on dostatecznej energi kinetycznej, aby wejść w strefę wzbronioną i przedostać się na drugą stronę, więc odbija się od niej. Sprawa wygląda inaczej w świetle mechaniki kwantowej. Część fali rzeczywiście ulegnie odbiciu, jednak reszta przedostanie się na drugą stronę. Nazywane jest to zjawiskiem tunelowym.
+
+![4](4_tunnelling_60.gif)
+
+Po przejściu przez barierę, funkcja składa się z dwóch rozłącznych rozkładów normalnych. Jeden znajduje się z lewej strony bariery, drugi z prawej. Jak możemy to interpretować? Elektrony przebijają się na drugą stronę bariery, ale czynią to z pewnym prawdopodobieństwem, równym całce pod prawym rozkładem. Dla konkretnego, fizycznego elektronu, nie mamy możliwości stwierdzenia po której stronie bariery się znajduje, dopóki nie dokonamy obserwacji.
+
+Prawdopodobieństwo przekroczenia bariery zależy od jej szerokości oraz niedoboru enrgi cząsteczki. Jeżeli przyjrzymy się wolniejszemu elektronowi o $v=50$, czyli $E=1250$, okaże się, że nie przebija się on tak ochoczo jak jego poprzednik, ponieważ posiada ponad 3 razy większy niedobór energi.
+
+![4](4_tunnelling_50.gif)
 
 ## Orbitale wodoru
 Nic nie stoi na przeszkodzie, aby powyższe metody rozszerzyć na wyższą liczbę wymiarów. Możemy rozważyć atom wodoru zadając potencjał pochodzący od jego jądra
@@ -80,10 +100,7 @@ $$V(x,y,z) = \cfrac{-1}{4\pi \sqrt{x^2+y^2+z^2}}.$$
 ---|--- | --- | ---
 |1|![](hydrogen/1s.png)| - | - |
 |2|![](hydrogen/2s.png)|![](hydrogen/2px.png)|-|
-|3| nie wyliczony | ![](hydrogen/3px.png) | nie wyliczony |
-
-
-
+|3| jeszcze nie wyliczony | ![](hydrogen/3px.png) | jeszcze nie wyliczony |
 
 
 ## Kody
