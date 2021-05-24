@@ -100,7 +100,7 @@ $$V(x,y,z) = \cfrac{-1}{4\pi \sqrt{x^2+y^2+z^2}}.$$
 ---|--- | --- | ---
 |1|![](hydrogen/1s.png)| - | - |
 |2|![](hydrogen/2s.png)|![](hydrogen/2px.png)|-|
-|3| jeszcze nie wyliczony | ![](hydrogen/3px.png) | jeszcze nie wyliczony |
+|3| jeszcze nie wyliczony | ![](hydrogen/3px.png) | ![](hydrogen/3dxy.ng) |
 
 
 ## Kody
