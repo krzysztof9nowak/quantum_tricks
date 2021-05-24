@@ -91,12 +91,13 @@ $$V(x,y,z) = \cfrac{-1}{4\pi \sqrt{x^2+y^2+z^2}}.$$
 
 Przedstawione zostały wykresy $|\psi|^2$ w przecięciu płaszczyzną XY, gdzie kolory jasne oznaczają wysokie gęstości prawdopodobieństwa, a ciemnie  — bliskie zeru. Z odrobiną wyobraźni możemy dostrzec w nich dobrze znane kształty orbitali wodoru.
 
-|n|s | p  | d |
+| n | s | p  | d |
 ---|--- | --- | ---
 |1|![](hydrogen/1s.png)| - | - |
 |2|![](hydrogen/2s.png)|![](hydrogen/2px.png)|-|
-|3| | ![](hydrogen/3px.png) | |
+|3| ? | ![](hydrogen/3px.png) | ![](hydrogen/3dxy.png) |
 
+Niestety orbitalu 3s i wyższych nie udało się wyliczyć.
 
 ## Kody
 Kod źródłowy do wykonania obliczeń jest dostępny na [GitHubie](https://github.com/krzysztof9nowak/quantum_tricks).
